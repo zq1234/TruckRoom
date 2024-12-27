@@ -1,0 +1,114 @@
+<div class="p-8 mt-4">
+  <div class="shadow p-6">
+    <h4 *ngIf="isEdit">Edit Truck Service Detail</h4>
+    <h4 *ngIf="!isEdit">Create Truck Service</h4>
+
+    <form [formGroup]="truckServiceForm" (ngSubmit)="save()">
+      <!-- Service Name -->
+      <div class="w-full flex flex-wrap">
+        <mat-form-field class="w-full">
+          <mat-label>Service Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Service Name"
+            formControlName="serviceName"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Service Date -->
+      <div class="w-full flex flex-wrap">
+        <mat-form-field class="w-full">
+          <mat-label>Service Date</mat-label>
+          <input
+            type="date"
+            matInput
+            placeholder="Service Date"
+            formControlName="serviceDate"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Tasks FormArray -->
+      <div class="tasks">
+        <div *ngFor="let task of tasks.controls; let i = index" [formGroup]="getTaskControl(i)">
+          <div class="w-full flex flex-wrap">
+            <mat-form-field class="w-full">
+              <mat-label>Task Name</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Task Name"
+                formControlName="taskName"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="w-full flex flex-wrap">
+            <mat-form-field class="w-full">
+              <mat-label>Description</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Description"
+                formControlName="description"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="w-full flex flex-wrap">
+            <mat-form-field class="w-full">
+              <mat-label>Remarks</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Remarks"
+                formControlName="remarks"
+              />
+            </mat-form-field>
+          </div>
+
+          <button
+            mat-button
+            type="button"
+            color="warn"
+            (click)="removeTask(i)"
+          >
+            Remove Task
+          </button>
+        </div>
+
+        <!-- Add Task Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="addTask()"
+        >
+          Add Task
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-between mt-4">
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!truckServiceForm.valid"
+        >
+          {{ isEdit ? 'Update' : 'Add' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

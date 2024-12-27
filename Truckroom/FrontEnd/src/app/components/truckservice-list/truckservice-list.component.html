@@ -1,0 +1,49 @@
+
+<div class="mat-elevation-z8 w-full">
+  <div class="flex justify-end p-8">
+    <button mat-raised-button color="primary" (click)="navigateToCreateService()">
+      Add Truck Service
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="truckServiceList">
+    <!-- Service ID Column -->
+    <ng-container matColumnDef="serviceId">
+      <th mat-header-cell *matHeaderCellDef>Service ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.serviceId }}</td>
+    </ng-container>
+
+    <!-- Service Name Column -->
+    <ng-container matColumnDef="serviceName">
+      <th mat-header-cell *matHeaderCellDef>Service Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.serviceName }}</td>
+    </ng-container>
+
+    <!-- Service Date Column -->
+    <ng-container matColumnDef="serviceDate">
+      <th mat-header-cell *matHeaderCellDef>Service Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.serviceDate }}</td>
+    </ng-container>
+
+    <!-- Tasks Column -->
+    <ng-container matColumnDef="tasks">
+      <th mat-header-cell *matHeaderCellDef>Tasks</th>
+      <td mat-cell *matCellDef="let element">{{ getTaskNames(element.tasks) }}</td>
+    </ng-container>
+
+    <!-- Action Column (Edit and Delete buttons) -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="edit(element.serviceId)" class="mr-4">Edit</button>
+        <button mat-raised-button color="warn" (click)="delete(element.serviceId)">Delete</button>
+      </td>
+    </ng-container>
+
+    <!-- Table Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+

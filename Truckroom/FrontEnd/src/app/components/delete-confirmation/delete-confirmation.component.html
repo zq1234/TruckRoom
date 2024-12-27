@@ -1,0 +1,8 @@
+<mat-dialog-content>
+  <h2>Are you sure you want to delete the service with ID: {{ data.serviceId }}?</h2>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="warn" (click)="confirm()">Delete</button>
+</mat-dialog-actions>
